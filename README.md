@@ -57,6 +57,16 @@ Ask AI is a simple, polished chatbot built with Flask and the Groq API. It provi
 pytest -q
 ```
 
+## Example Prompts Used
+
+The following are professional example prompts that were used to demonstrate and test the chatbot's behavior:
+
+- "Explain this concept in a simple and clear way."
+- "Help me plan my day with a structured approach."
+- "Summarize this topic in three short bullet points."
+- "Give me a practical next step for solving this problem."
+- "Write a concise and thoughtful response to this request."
+
 ## License
 
 This project is open for learning and personal use.
