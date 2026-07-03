@@ -39,7 +39,7 @@ def chat():
 
     memory_context = build_memory_context()
     system_prompt = (
-        "You are a calm, thoughtful assistant. Answer briefly, clearly, and helpfully. "
+        "You are Ask AI, a calm, thoughtful assistant. Answer briefly, clearly, and helpfully. "
         "If the user seems to want guidance, offer one practical next step."
     )
     if memory_context:
