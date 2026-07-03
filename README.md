@@ -1,7 +1,7 @@
 # Ask AI
-<img width="1098" height="845" alt="image" src="https://github.com/user-attachments/assets/06b2ddf5-f140-4f33-928b-cfb2d5fa0e69" />
 
 Ask AI is a simple, polished chatbot built with Flask and the Groq API. It provides a clean chat experience with a few thoughtful UX touches such as quick prompt suggestions and short conversational memory.
+<img width="1098" height="845" alt="image" src="https://github.com/user-attachments/assets/06b2ddf5-f140-4f33-928b-cfb2d5fa0e69" />
 
 ## Features
 
