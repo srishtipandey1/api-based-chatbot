@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Local Groq Chatbot</title>
+    <style>
+      body { font-family: Arial, sans-serif; margin: 0; background: #f4f7fb; color: #1f2937; }
+      .wrap { max-width: 760px; margin: 40px auto; padding: 24px; background: white; border-radius: 16px; box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+      h1 { margin-top: 0; }
+      #chat { border: 1px solid #dbe4ef; border-radius: 12px; padding: 12px; min-height: 320px; max-height: 420px; overflow-y: auto; background: #fcfdff; }
+      .bubble { margin: 8px 0; padding: 10px 12px; border-radius: 10px; max-width: 80%; line-height: 1.45; }
+      .user { margin-left: auto; background: #2563eb; color: white; }
+      .assistant { background: #e8f0fe; color: #1f2937; }
+      form { display: flex; gap: 10px; margin-top: 16px; }
+      input { flex: 1; padding: 10px 12px; border: 1px solid #cbd5e1; border-radius: 8px; }
+      button { padding: 10px 14px; border: none; border-radius: 8px; background: #2563eb; color: white; cursor: pointer; }
+      .hint { color: #64748b; font-size: 0.95rem; margin-top: 10px; }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <h1>Simple Groq Chatbot</h1>
+      <div id="chat"></div>
+      <form id="chat-form">
+        <input id="message" name="message" placeholder="Ask something thoughtful..." autocomplete="off" />
+        <button type="submit">Send</button>
+      </form>
+      <div class="hint">The bot keeps a short memory of your recent chat so replies feel more connected.</div>
+    </div>
+
+    <script>
+      const chat = document.getElementById('chat');
+      const form = document.getElementById('chat-form');
+      const input = document.getElementById('message');
+
+      function addBubble(text, role) {
+        const div = document.createElement('div');
+        div.className = `bubble ${role}`;
+        div.textContent = text;
+        chat.appendChild(div);
+        chat.scrollTop = chat.scrollHeight;
+      }
+
+      form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const message = input.value.trim();
+        if (!message) return;
+
+        addBubble(message, 'user');
+        input.value = '';
+        addBubble('Thinking…', 'assistant');
+
+        const response = await fetch('/api/chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ message })
+        });
+
+        const data = await response.json();
+        chat.lastChild.remove();
+        addBubble(data.reply, 'assistant');
+      });
+    </script>
+  </body>
+</html>
